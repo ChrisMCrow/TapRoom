@@ -4,13 +4,16 @@ import { FormsModule} from "@angular/forms";
 import { AppComponent } from './app.component';
 import { EditKegComponent } from './edit-keg/edit-keg.component';
 import { NewKegComponent } from './new-keg/new-keg.component';
+import { OrderByPipe } from './orderBy.pipe';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EditKegComponent,
-    NewKegComponent
+    NewKegComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

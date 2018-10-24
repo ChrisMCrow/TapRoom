@@ -12,10 +12,12 @@ export class AppComponent {
   currentKegs: Keg[] = [
     new Keg("Big Wave", "Kona Brewing Company", 9, 5.5),
     new Keg("Fat Tire Belgian White", "New Belgium", 7, 5.2),
-    new Keg("Crisp Apple", "Angry Orchard", 6, 5.0)
+    new Keg("Crisp Apple", "Angry Orchard", 6, 5.0),
+    new Keg("Irish Creme", "Bailey's", 10, 17)
+    new Keg("Belgian White", "Shock Top", 5, 5.2)
   ];
   selectedKeg: Keg = null;
-  newKeg: Keg = null;
+  newKeg: boolean = false;
 
   editKeg(keg: Keg): void {
     this.selectedKeg = keg;  
@@ -25,6 +27,14 @@ export class AppComponent {
     this.selectedKeg = null;
   }
 
+  newKegOpen(): void {
+    this.newKeg = true;
+  }
+
+  addNewKeg(keg: Keg): void {
+    this.currentKegs.push(keg);
+    this.newKeg = false;
+  }
   
   lessThan10Pints(keg: Keg): string {
     if (keg.pints < 10) {
@@ -71,6 +81,32 @@ export class AppComponent {
       return "badge badge-success";
     }
   }
+
+  desiredColumn: string = "name";
+  desiredOrder: string = "ascending";
+
+  columnSortClicked(desiredColumn, desiredOrder) {
+    this.desiredColumn = desiredColumn;
+    this.desiredOrder = desiredOrder;
+  }
+  
+  desiredOrders: object = {
+    name: "ascending",
+    brand: "ascending",
+    price: "ascending",
+    alcoholContent: "ascending",
+    pints: "ascending"
+  }
+
+  triangles(columnName): string {
+    if (this.desiredOrders[columnName] === "ascending")
+      return '▲';
+    else
+      return '▼';
+  }
+
+  toggleOrder(columnName: string) {
+    this.desiredOrders[columnName] = (this.desiredOrders[columnName] === "ascending") ? "descending":"ascending";
+    return this.desiredOrders[columnName];
+  }
 }
-
-

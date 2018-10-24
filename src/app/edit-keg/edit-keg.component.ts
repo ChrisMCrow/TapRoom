@@ -11,10 +11,15 @@ export class EditKegComponent implements OnInit {
 
   @Input() selectedKeg: Keg;
   @Output() clickSender = new EventEmitter();
+  @Output() hideSender = new EventEmitter();
 
   editKegClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
   }
   
   ngOnInit() {}
+
+  hideEditKegClicked(): void {
+    this.hideSender.emit();
+  }
 }

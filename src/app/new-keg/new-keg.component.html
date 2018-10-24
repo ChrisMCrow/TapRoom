@@ -1,8 +1,9 @@
-<form *ngIf="newKeg">
-    <input [(ngModel)]="newKeg.name" type="text" class="form-control mb-2" name="name" placeholder="Name">
-    <input [(ngModel)]="newKeg.brand" type="text" class="form-control mb-2" name="brand" placeholder="Brand">
-    <input [(ngModel)]="newKeg.price" type="number" class="form-control mb-2" name="price" placeholder="Price">
-    <input [(ngModel)]="newKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent" placeholder="Alcohol Content">
-    <button (click)="addNewKeg(newKeg)" class="btn btn-info">Done</button>
+
+<form action="" *ngIf="newKeg">
+    <input #newKegName type="text" class="form-control mb-2" name="name" placeholder="Name">
+    <input #newKegBrand type="text" class="form-control mb-2" name="brand" placeholder="Brand">
+    <input #newKegPrice type="number" class="form-control mb-2" name="price" placeholder="Price">
+    <input #newKegAlcoholContent type="number" class="form-control mb-2" name="alcoholContent" placeholder="Alcohol Content">
+    <button (click)="submitForm(newKegName.value, newKegBrand.value, newKegPrice.value, newKegAlcoholContent.value)" class="btn btn-info">Done</button>
   </form>
 

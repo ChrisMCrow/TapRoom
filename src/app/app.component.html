@@ -5,22 +5,22 @@
   <div class="content">
     <table class="table">
       <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Brand</th>
-          <th scope="col">Price</th>
-          <th scope="col">Alcohol Content</th>
-          <th scope="col">Pints Remaining</th>
+        <tr class="table-headers">
+          <th (click)="columnSortClicked('name', toggleOrder('name'))" scope="col">Name <span *ngIf="desiredColumn === 'name'">{{triangles("name")}}</span></th>
+          <th (click)="columnSortClicked('brand', toggleOrder('brand'))" scope="col">Brand <span *ngIf="desiredColumn === 'brand'">{{triangles("brand")}}</span></th>
+          <th (click)="columnSortClicked('price', toggleOrder('price'))" scope="col">Price <span *ngIf="desiredColumn === 'price'">{{triangles("price")}}</span></th>
+          <th (click)="columnSortClicked('alcoholContent', toggleOrder('alcoholContent'))" scope="col">Alcohol Content <span *ngIf="desiredColumn === 'alcoholContent'">{{triangles("alcoholContent")}}</span></th>
+          <th (click)="columnSortClicked('pints', toggleOrder('pints'))" scope="col">Pints Remaining <span *ngIf="desiredColumn === 'pints'">{{triangles("pints")}}</span></th>
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let keg of currentKegs">
+        <tr *ngFor="let keg of currentKegs | orderBy:{desiredColumn: this.desiredColumn, desiredOrder: this.desiredOrder }">
           <td [class]="lessThan10Pints(keg)">{{keg.name}}</td>
           <td [class]="lessThan10Pints(keg)">{{keg.brand}}</td>
-          <td><span [class]="priceColor(keg)">{{keg.priceText}}</span>${{keg.price}}</td> 
+          <td><span [class]="priceColor(keg)">{{keg.priceText}}</span>&nbsp;{{keg.price}}</td> 
           <td [class]="alcoholContentColor(keg)">{{keg.alcoholContent}}%</td> 
           <td [class]="lessThan10Pints(keg)">{{keg.pints}}</td>
           <td><button (click)="editKeg(keg)" class="btn btn-secondary">Edit</button></td>
@@ -30,8 +30,10 @@
       </tbody>
       
     </table>
+    <app-edit-keg [selectedKeg]="selectedKeg" (clickSender)="editKeg($event)" (hideSender)="hideEditKeg()"></app-edit-keg>
+    <app-new-keg [newKeg]="newKeg" [currentKegs]="currentKegs" (addNewKegSender)="addNewKeg($event)"></app-new-keg>
+
     <button (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
-    <app-edit-keg [selectedKeg]="selectedKeg" (clickSender)="editKeg($event)"></app-edit-keg>
-    <app-new-keg [newKeg]="newKeg" [currentKegs]="currentKegs"></app-new-keg>
+
   </div>
 </div>

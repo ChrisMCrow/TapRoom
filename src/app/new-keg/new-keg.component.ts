@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Keg } from '../models/keg.model';
+import {  } from 'events';
 
 
 @Component({
@@ -13,17 +14,12 @@ export class NewKegComponent implements OnInit {
 
   @Input() newKeg: Keg;
   @Input() currentKegs: Keg[];
+  @Output() addNewKegSender = new EventEmitter();
 
-  newKegOpen(): void {
-    this.newKeg = new Keg("", "", null, null);
+  submitForm(name: string, brand: string, price: number, alcoholContent: number): void {
+    let newKeg: Keg = new Keg(name, brand, price, alcoholContent);
+    this.addNewKegSender.emit(newKeg);
   }
-
-  addNewKeg(keg: Keg): void {
-    this.currentKegs.push(keg);
-    this.newKeg = null;
-  }
-
-
 
   ngOnInit() { }
 }

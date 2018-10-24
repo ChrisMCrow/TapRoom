@@ -9,3 +9,7 @@
 .text-secondary {
     color: gray;
 }
+
+.table-headers:hover {
+    cursor: pointer;
+}
