@@ -31,19 +31,7 @@
       
     </table>
     <button (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
-    <div *ngIf="selectedKeg" id="editKeg">
-      <input [(ngModel)]="selectedKeg.name" type="text" class="form-control mb-2" name="name">
-      <input [(ngModel)]="selectedKeg.brand" type="text" class="form-control mb-2" name="brand">
-      <input [(ngModel)]="selectedKeg.price" type="number" class="form-control mb-2" name="price">
-      <input [(ngModel)]="selectedKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent">
-      <button (click)="hideEditKeg()" class="btn btn-info">Done</button>
-    </div>
-    <form *ngIf="newKeg">
-      <input [(ngModel)]="newKeg.name" type="text" class="form-control mb-2" name="name" placeholder="Name">
-      <input [(ngModel)]="newKeg.brand" type="text" class="form-control mb-2" name="brand" placeholder="Brand">
-      <input [(ngModel)]="newKeg.price" type="number" class="form-control mb-2" name="price" placeholder="Price">
-      <input [(ngModel)]="newKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent" placeholder="Alcohol Content">
-      <button (click)="addNewKeg(newKeg)" class="btn btn-info">Done</button>
-    </form>
+    <app-edit-keg [selectedKeg]="selectedKeg" (clickSender)="editKeg($event)"></app-edit-keg>
+    <app-new-keg [newKeg]="newKeg" [currentKegs]="currentKegs"></app-new-keg>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { $ } from 'jquery';
+import { Keg } from './models/keg.model';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ export class AppComponent {
     new Keg("Crisp Apple", "Angry Orchard", 6, 5.0)
   ];
   selectedKeg: Keg = null;
+  newKeg: Keg = null;
 
-  editKeg(keg:Keg): void {
+  editKeg(keg: Keg): void {
     this.selectedKeg = keg;  
   }
 
@@ -23,15 +25,6 @@ export class AppComponent {
     this.selectedKeg = null;
   }
 
-  newKeg: Keg = null;
-  newKegOpen(): void {
-    this.newKeg = new Keg("", "", null, null);
-  }
-
-  addNewKeg(keg: Keg): void {
-    this.currentKegs.push(keg);
-    this.newKeg = null;
-  }
   
   lessThan10Pints(keg: Keg): string {
     if (keg.pints < 10) {
@@ -65,6 +58,7 @@ export class AppComponent {
   deleteKeg(keg): void {
     this.currentKegs.splice(this.currentKegs.indexOf(keg), 1);
   }
+
   priceColor(keg): string {
     if (keg.price >= 9) {
       keg.priceText = "$$$";
@@ -76,13 +70,6 @@ export class AppComponent {
       keg.priceText = "$";
       return "badge badge-success";
     }
-  }
-}
-
-export class Keg {
-  pints: number = 124;
-  priceText: string = "";
-  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number) {
   }
 }
 
