@@ -1,20 +1,49 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <div class="jumbotron">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Price</th>
+          <th scope="col">Alcohol Content</th>
+          <th scope="col">Pints Remaining</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let keg of currentKegs">
+          <td [class]="lessThan10Pints(keg)">{{keg.name}}</td>
+          <td [class]="lessThan10Pints(keg)">{{keg.brand}}</td>
+          <td><span [class]="priceColor(keg)">{{keg.priceText}}</span>${{keg.price}}</td> 
+          <td [class]="alcoholContentColor(keg)">{{keg.alcoholContent}}%</td> 
+          <td [class]="lessThan10Pints(keg)">{{keg.pints}}</td>
+          <td><button (click)="editKeg(keg)" class="btn btn-secondary">Edit</button></td>
+          <td><button (click)="sellPint(keg)" class="btn btn-primary">Sell Pint</button></td>
+          <td><button (click)="deleteKeg(keg)" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <button (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
+    <div *ngIf="selectedKeg" id="editKeg">
+      <input [(ngModel)]="selectedKeg.name" type="text" class="form-control mb-2" name="name">
+      <input [(ngModel)]="selectedKeg.brand" type="text" class="form-control mb-2" name="brand">
+      <input [(ngModel)]="selectedKeg.price" type="number" class="form-control mb-2" name="price">
+      <input [(ngModel)]="selectedKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent">
+      <button (click)="hideEditKeg()" class="btn btn-info">Done</button>
+    </div>
+    <form *ngIf="newKeg">
+      <input [(ngModel)]="newKeg.name" type="text" class="form-control mb-2" name="name" placeholder="Name">
+      <input [(ngModel)]="newKeg.brand" type="text" class="form-control mb-2" name="brand" placeholder="Brand">
+      <input [(ngModel)]="newKeg.price" type="number" class="form-control mb-2" name="price" placeholder="Price">
+      <input [(ngModel)]="newKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent" placeholder="Alcohol Content">
+      <button (click)="addNewKeg(newKeg)" class="btn btn-info">Done</button>
+    </form>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
