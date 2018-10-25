@@ -1,10 +1,10 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>{{title}}</h1>
+    <span class="ml12">{{title}}</span>
   </div>
   <div class="content">
     <table class="table">
-      <thead>
+      <thead class="thead">
         <tr class="table-headers">
           <th (click)="columnSortClicked('name', toggleOrder('name'))" scope="col">Name <span *ngIf="desiredColumn === 'name'">{{triangles("name")}}</span></th>
           <th (click)="columnSortClicked('brand', toggleOrder('brand'))" scope="col">Brand <span *ngIf="desiredColumn === 'brand'">{{triangles("brand")}}</span></th>
@@ -33,7 +33,7 @@
     <app-edit-keg [selectedKeg]="selectedKeg" (clickSender)="editKeg($event)" (hideSender)="hideEditKeg()"></app-edit-keg>
     <app-new-keg [newKeg]="newKeg" [currentKegs]="currentKegs" (addNewKegSender)="addNewKeg($event)"></app-new-keg>
 
-    <button (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
+    <button *ngIf="!newKeg && !selectedKeg" (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
 
   </div>
 </div>

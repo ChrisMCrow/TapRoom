@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
-import { $ } from 'jquery';
+import { Component, AfterViewInit } from '@angular/core';
+import * as $ from 'jquery';
 import { Keg } from './models/keg.model';
+import * as anime from 'animejs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Tap room';
+export class AppComponent implements AfterViewInit {
+  title = 'Guilty Pleasure';
   currentKegs: Keg[] = [
     new Keg("Big Wave", "Kona Brewing Company", 9, 5.5),
     new Keg("Fat Tire Belgian White", "New Belgium", 7, 5.2),
     new Keg("Crisp Apple", "Angry Orchard", 6, 5.0),
-    new Keg("Irish Creme", "Bailey's", 10, 17)
+    new Keg("Irish Creme", "Bailey's", 10, 17),
     new Keg("Belgian White", "Shock Top", 5, 5.2)
   ];
   selectedKeg: Keg = null;
@@ -100,13 +101,43 @@ export class AppComponent {
 
   triangles(columnName): string {
     if (this.desiredOrders[columnName] === "ascending")
-      return '▲';
-    else
       return '▼';
+    else
+      return '▲';
   }
 
   toggleOrder(columnName: string) {
     this.desiredOrders[columnName] = (this.desiredOrders[columnName] === "ascending") ? "descending":"ascending";
     return this.desiredOrders[columnName];
   }
+
+  ngAfterViewInit() {
+    $('.ml12').each(function(){
+        $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+    });
+    
+    anime.timeline({loop: false})
+      .add({
+        targets: '.ml12 .letter',
+        translateX: [40,0],
+        translateZ: 0,
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 1200,
+        delay: function(el, i) {
+          return 500 + 30 * i;
+        }
+      });
+  }
 }
+
+// .add({
+//   targets: '.ml12 .letter',
+//   translateX: [0,-30],
+//   opacity: [1,0],
+//   easing: "easeInExpo",
+//   duration: 1100,
+//   delay: function(el, i) {
+//     return 100 + 30 * i;
+//   }
+// });
