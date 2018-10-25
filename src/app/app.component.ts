@@ -25,7 +25,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   hideEditKeg(): void {
-    this.selectedKeg = null;
+    $("#editKeg").addClass("fadeOutUp");
+    setTimeout(() => {
+      this.selectedKeg = null;
+    }, 500);
   }
 
   newKegOpen(): void {
@@ -33,8 +36,11 @@ export class AppComponent implements AfterViewInit {
   }
 
   addNewKeg(keg: Keg): void {
-    this.currentKegs.push(keg);
-    this.newKeg = false;
+    $("#newKeg").addClass("fadeOutUp");
+    setTimeout(() => {
+      this.currentKegs.push(keg);
+      this.newKeg = false;
+    }, 500);
   }
   
   lessThan10Pints(keg: Keg): string {
@@ -58,9 +64,13 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  sellPint(keg: Keg): void {
-    if (keg.pints > 0) {
+  sell(keg: Keg, amount: string): void {
+    if (keg.pints > 1 && amount==="pint") {
       keg.pints -= 1;
+    } else if (keg.pints > 2 && amount==="growler") {
+      keg.pints -= 2;
+    } else if (keg.pints > 4 && amount==="largeGrowler") {
+      keg.pints -= 4;
     } else {
       this.deleteKeg(keg);
     }

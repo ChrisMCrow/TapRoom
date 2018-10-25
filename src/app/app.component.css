@@ -3,11 +3,11 @@
 }
 
 .text-danger {
-    color: red;
+    color: rgb(202, 76, 99)!important;
 }
 
 .text-secondary {
-    color: gray;
+    color: rgb(25, 173, 187)!important;
 }
 
 .table-headers:hover {

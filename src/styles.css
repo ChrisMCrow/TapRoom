@@ -66,3 +66,29 @@ th {
     display: inline-block;
     line-height: 1em;
 }
+
+.badge-success {
+    background-color: rgb(25, 173, 187);
+}
+
+.badge-danger {
+    background-color: rgb(202, 76, 99);
+}
+
+.badge-warning {
+    background-color: rgb(255, 206, 71);
+    color: rgb(255, 255, 255);
+}
+
+.dropdown-menu {
+    background-color:rgba(119, 70, 14, 0.95);
+    color: rgb(196, 179, 179);
+    border-radius: 1px;
+    border: 1px solid rgb(196, 179, 179);
+
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 0, 0, .8);
+    cursor: pointer;
+}

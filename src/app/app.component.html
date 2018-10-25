@@ -24,7 +24,16 @@
           <td [class]="alcoholContentColor(keg)">{{keg.alcoholContent}}%</td> 
           <td [class]="lessThan10Pints(keg)">{{keg.pints}}</td>
           <td><button (click)="editKeg(keg)" class="btn btn-secondary">Edit</button></td>
-          <td><button (click)="sellPint(keg)" class="btn btn-primary">Sell Pint</button></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sell</button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a (click)="sell(keg, 'pint')" class="dropdown-item">Pint</a>
+                <a (click)="sell(keg, 'growler')" class="dropdown-item">Growler</a>
+                <a (click)="sell(keg, 'largeGrowler')" class="dropdown-item">Large Growler</a>
+              </div>
+            </div>
+          </td>
           <td><button (click)="deleteKeg(keg)" class="btn btn-danger">Delete</button></td>
         </tr>
       </tbody>
