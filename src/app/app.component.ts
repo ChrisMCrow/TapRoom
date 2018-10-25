@@ -139,6 +139,25 @@ export class AppComponent implements AfterViewInit {
         }
       });
   }
+
+  happyHour: boolean = false;
+
+  startHappyHour() {
+    this.currentKegs.forEach(keg => {
+      keg.price *= 0.9;
+    });
+    this.happyHour = true;
+  }
+
+  endHappyHour() {
+    this.currentKegs.forEach(keg => {
+      keg.price /= 0.9;
+    });
+    $(".happyHourTitle").addClass("rollOut");
+    setTimeout(()=> {
+      this.happyHour = false;
+    }, 500);
+  }
 }
 
 // .add({

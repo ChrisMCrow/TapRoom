@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Covered+By+Your+Grace');
+
+.happyHourTitle {
+    font-family: 'Covered By Your Grace', sans-serif;
+    color: rgb(196, 179, 179);
+    text-shadow: -1px -1px 0 rgb(48, 48, 48),
+        1px -1px 0 rgb(48, 48, 48),
+        -1px 1px 0 rgb(48, 48, 48),
+        1px 1px 0 rgb(48, 48, 48);  
+    text-align: center;
+    font-size: 60px;
+    letter-spacing: 5px;
+}

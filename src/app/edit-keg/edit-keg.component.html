@@ -3,5 +3,11 @@
     <input [(ngModel)]="selectedKeg.brand" type="text" class="form-control mb-2" name="brand">
     <input [(ngModel)]="selectedKeg.price" type="number" class="form-control mb-2" name="price">
     <input [(ngModel)]="selectedKeg.alcoholContent" type="number" class="form-control mb-2" name="alcoholContent">
-    <button (click)="hideEditKegClicked()" class="btn btn-info">Done</button>
+    <select [(ngModel)]="selectedKeg.discount" name="onSale" class="form-control">
+      <option [value]="1">No discount</option>
+      <option [value]="0.95">5% discount</option>
+      <option [value]="0.9">10% discount</option>
+      <option [value]="0.85">15% discount</option>
+    </select>
+    <button (click)="hideEditKegClicked()" class="btn btn-info mt-2">Done</button>
   </div>

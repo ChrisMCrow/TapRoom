@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { EditKegComponent } from './edit-keg/edit-keg.component';
 import { NewKegComponent } from './new-keg/new-keg.component';
 import { OrderByPipe } from './orderBy.pipe';
+import { HappyHourComponent } from './happy-hour/happy-hour.component';
 
 
 
@@ -13,7 +14,8 @@ import { OrderByPipe } from './orderBy.pipe';
     AppComponent,
     EditKegComponent,
     NewKegComponent,
-    OrderByPipe
+    OrderByPipe,
+    HappyHourComponent
   ],
   imports: [
     BrowserModule,

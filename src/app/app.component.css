@@ -13,3 +13,7 @@
 .table-headers:hover {
     cursor: pointer;
 }
+
+.background-sale {
+    background-color: rgba(194, 116, 28, 0.8);
+}

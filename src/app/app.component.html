@@ -1,7 +1,8 @@
 <div class="container">
-  <div class="jumbotron">
+  <div [ngClass]="{ 'jumbotron': true, 'noHappyHour': !happyHour }">
     <span class="ml12">{{title}}</span>
   </div>
+  <app-happy-hour [happyHour]="happyHour"></app-happy-hour>
   <div class="content">
     <table class="table">
       <thead class="thead">
@@ -18,13 +19,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let keg of currentKegs | orderBy:{desiredColumn: this.desiredColumn, desiredOrder: this.desiredOrder }">
-          <td [class]="lessThan10Pints(keg)">{{keg.name}}</td>
-          <td [class]="lessThan10Pints(keg)">{{keg.brand}}</td>
-          <td><span [class]="priceColor(keg)">{{keg.priceText}}</span>&nbsp;{{keg.price}}</td> 
-          <td [class]="alcoholContentColor(keg)">{{keg.alcoholContent}}%</td> 
-          <td [class]="lessThan10Pints(keg)">{{keg.pints}}</td>
-          <td><button (click)="editKeg(keg)" class="btn btn-secondary">Edit</button></td>
-          <td>
+          <td [ngClass]="{'text-danger': (keg.pints < 10), 'background-sale': (keg.discount != 1)}">{{keg.name}}</td>
+          <td [ngClass]="{'text-danger': (keg.pints < 10), 'background-sale': (keg.discount != 1)}">{{keg.brand}}</td>
+          <td [ngClass]="{'background-sale': (keg.discount != 1)}"><span [class]="priceColor(keg)">{{keg.priceText}}</span>&nbsp;{{keg.price*keg.discount}}</td> 
+          <td [ngClass]="{'background-sale': (keg.discount != 1)}"><span [class]="alcoholContentColor(keg)">{{keg.alcoholContent}}%</span></td> 
+          <td [ngClass]="{'text-danger': (keg.pints < 10), 'background-sale': (keg.discount != 1)}">{{keg.pints}}</td>
+          <td [ngClass]="{'background-sale': (keg.discount != 1)}"><button (click)="editKeg(keg)" class="btn btn-secondary">Edit</button></td>
+          <td [ngClass]="{'background-sale': (keg.discount != 1)}">
             <div class="dropdown">
               <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sell</button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,7 +35,7 @@
               </div>
             </div>
           </td>
-          <td><button (click)="deleteKeg(keg)" class="btn btn-danger">Delete</button></td>
+          <td [ngClass]="{'background-sale': (keg.discount != 1)}"><button (click)="deleteKeg(keg)" class="btn btn-danger">Delete</button></td>
         </tr>
       </tbody>
       
@@ -43,6 +44,8 @@
     <app-new-keg [newKeg]="newKeg" [currentKegs]="currentKegs" (addNewKegSender)="addNewKeg($event)"></app-new-keg>
 
     <button *ngIf="!newKeg && !selectedKeg" (click)="newKegOpen()" class="btn btn-success">Add New Keg</button>
+    <button *ngIf="!newKeg && !selectedKeg && !happyHour" (click)="startHappyHour()" class="btn btn-success">Start Happy Hour</button>
+    <button *ngIf="!newKeg && !selectedKeg && happyHour" (click)="endHappyHour()" class="btn btn-success">End Happy Hour</button>
 
   </div>
 </div>
