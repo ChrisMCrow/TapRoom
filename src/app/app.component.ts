@@ -9,7 +9,7 @@ import * as anime from 'animejs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'Guilty Pleasure';
+  title = 'The Tap Room';
   currentKegs: Keg[] = [
     new Keg("Big Wave", "Kona Brewing Company", 9, 5.5),
     new Keg("Fat Tire Belgian White", "New Belgium", 7, 5.2),
